@@ -1,0 +1,32 @@
+# Rebuilds README.md from stevenpisani.com/profile.json (render.mjs) every day and on demand,
+# and commits it if anything changed. Edit the site, not the README.
+name: README
+
+on:
+  schedule:
+    - cron: '17 11 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [render.mjs, .github/workflows/readme.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node render.mjs
+      - name: Commit if changed
+        run: |
+          git diff --quiet README.md && { echo "No change."; exit 0; }
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -am 'README: rebuilt from stevenpisani.com/profile.json'
+          git push
