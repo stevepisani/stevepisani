@@ -50,7 +50,7 @@ I design and build the systems that turn raw data into business intelligence, fr
 ### 🧪 From the lab
 
 - 🧹 [SQL Formatter](https://stevenpisani.com/lab/sql-formatter)
-- 🍳 [Recipe Tracker](https://stevenpisani.com/recipe_tracker/)
+- 🍳 [Recipe Tracker](https://stevenpisani.com/apps/recipes)
 - 📚 [The Bookshelf](https://stevenpisani.com/bookshelf)
 
 ---
